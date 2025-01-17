@@ -9,7 +9,7 @@
 
     <!-- Contenedor Bootstrap para centrar el contenido -->
     <div class="container mt-5" style="min-height: 71vh;">
-        <h1>PRODUCTOS</h1>
+        <h1>BIENVENIDO AL SERVICIO DE CITAS DE LA SEGURIDAD SOCIAL</h1>
     </div>
 
     <%@ include file="partials/footer.jsp" %>
