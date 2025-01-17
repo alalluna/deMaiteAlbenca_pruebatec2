@@ -1,5 +1,10 @@
 -He creado la estructura inicial, editando pom con las dependecias necesarias, 
-añadieno el archivo persistence e incluyendo la configuración de la fabrica y el crud generico.
+añadiendo el archivo persistence e incluyendo la configuración de la fabrica y el crud generico.
 Tambien he incluido un footer, un head y en header para las vistas 
 -He creado tres entidades. Ciudadano y Tramite tienen relacion one to many con la tercera relación (Turno) 
 que tiene many to one para corresponderse correctamente con las anteriores.
+-Ahora he hecho CiudadanoController,TramiteController y TurnoController. En las dos primeras he realizado todo el crud, 
+pero se que no me hará falta todo. En TurnoController he incluido crear el turno, listar y filtrar para poder tener el programa.
+-He creado los archivos CiudadanoServlet, TramiteServlet y TurnoServlet, aunque aun no he realizado el doget, dopost,
+también he hecho lo mismo con las vistas ciudadanos, tramites y turnos mas index.
+-He creado dos validaciones para objetos nulos y collecciones nulas, asi no tengo que repetir codigo en los metodos
