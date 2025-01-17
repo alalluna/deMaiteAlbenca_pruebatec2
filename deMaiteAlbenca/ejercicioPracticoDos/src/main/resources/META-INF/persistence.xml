@@ -1,10 +1,10 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
-    <persistence-unit name="ejemploPP">
-        <class>com.example.entities.Producto</class>
+    <persistence-unit name="ejemploPU">
+        <class>com.example.entities.Turno</class>
         <properties>
             <!--  Configuración de la base de datos  -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/productos_db?serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/citas_ss_db?serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <!--  Mostrar sentencias SQL  -->
