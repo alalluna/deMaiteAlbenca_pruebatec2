@@ -17,23 +17,23 @@ import java.util.List;
 public class CiudadanoServlet extends HttpServlet {
     private CiudadanoController ciudadanoController = new CiudadanoController();
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Para la lista de resultados
         List<Ciudadano> ciudadanos = ciudadanoController.findAllCiudadano();
-        request.setAttribute("ciudadanos", ciudadanos);
+        req.setAttribute("ciudadanos", ciudadanos);
 
-        // Muestra el formulario
-        request.getRequestDispatcher("/ciudadanos.jsp").forward(request, response);
+        // (Muestra el formulario)ahora redirige a las dos, a formulario y lista
+        req.getRequestDispatcher("/ciudadanos.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Recibir los parámetros del formulario
-        String nombre = request.getParameter("nombre");
-        String apellidos = request.getParameter("apellidos");
-        String documentoIdentidad = request.getParameter("documentoIdentidad");
-        String numSS = request.getParameter("numSS");
-        LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
+        String nombre = req.getParameter("nombre");
+        String apellidos = req.getParameter("apellidos");
+        String documentoIdentidad = req.getParameter("documentoIdentidad");
+        String numSS = req.getParameter("numSS");
+        LocalDate fechaNacimiento = LocalDate.parse(req.getParameter("fechaNacimiento"));
 
         // Crear un nuevo ciudadano
         Ciudadano ciudadano = new Ciudadano(nombre, apellidos, documentoIdentidad, numSS, fechaNacimiento);
@@ -41,7 +41,7 @@ public class CiudadanoServlet extends HttpServlet {
         // Guardar el ciudadano
         ciudadanoController.createCiudadano(ciudadano);
 
-        // Redirigir
-        response.sendRedirect(request.getContextPath() + "/ciudadanos");
+        // Redirigire
+        resp.sendRedirect(req.getContextPath() + "/ciudadanos");
     }
 }

@@ -3,8 +3,6 @@ package com.example.controllers;
 import com.example.entities.Tramite;
 import com.example.persistence.GenericoJPA;
 import com.example.utils.Validations;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
 import java.util.List;
 

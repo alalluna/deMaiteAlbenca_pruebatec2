@@ -2,6 +2,7 @@ package com.example.entities;
 
 import jakarta.persistence.*;
 
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 @Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
@@ -14,8 +15,10 @@ public class Tramite {
     private String nombre;
     @Column(nullable = false)
     private String descripcion;
+
+    //inlcuyo el tipo Duration que es util para contabilizar el tiempo, en la base de datos es de tipo TIME
     @Column(nullable = false)
-    private int duracionEstimada;
+    private Duration duracionEstimada;
 
     @OneToMany(mappedBy = "tramite", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Turno> turnos = new HashSet<>();
@@ -23,7 +26,7 @@ public class Tramite {
 
     public Tramite() {
     }
-    public Tramite(String nombre, String descripcion, int duracionEstimada) {
+    public Tramite(String nombre, String descripcion, Duration duracionEstimada) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracionEstimada = duracionEstimada;
@@ -56,11 +59,11 @@ public class Tramite {
         this.descripcion = descripcion;
     }
 
-    public int getDuracionEstimada() {
+    public Duration getDuracionEstimada() {
         return duracionEstimada;
     }
 
-    public void setDuracionEstimada(int duracionEstimada) {
+    public void setDuracionEstimada(Duration duracionEstimada) {
         this.duracionEstimada = duracionEstimada;
     }
 

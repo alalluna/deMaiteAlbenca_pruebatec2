@@ -1,18 +1,27 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <!-- importar clase tramite y util list-->
+    <%@ page import="java.util.List, com.example.entities.Tramite" %>
+        <!DOCTYPE html>
 
-<html lang="en">
-    <%@ include file="partials/head.jsp" %>
-<body>
+        <html lang="en">
+        <%@ include file="partials/head.jsp" %>
 
-    <%@ include file="partials/header.jsp" %>
+            <body>
 
-    <!-- Contenedor Bootstrap para centrar el contenido -->
-    <div class="container mt-5" style="min-height: 71vh;">
-        <h1>BIENVENIDO AL SERVICIO DE CITAS DE LA SEGURIDAD SOCIAL</h1>
-    </div>
+                <%@ include file="partials/header.jsp" %>
 
-    <%@ include file="partials/footer.jsp" %>
+                    <!-- Contenedor para centrar el contenido -->
+                    <div class="container mt-3 mb-2" style="min-height: 70vh;">
+                     <!-- Contenedor row -->
+                        <div class="row">
+                            <%@ include file="partials/formularioTramites.jsp" %>
 
-</body>
-</html>
+                            <%@ include file="partials/tablaTramites.jsp" %>
+                        </div>
+                    </div>
+
+                    <%@ include file="partials/footer.jsp" %>
+
+            </body>
+
+        </html>
