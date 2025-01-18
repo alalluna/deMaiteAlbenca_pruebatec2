@@ -3,10 +3,11 @@ package com.example.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
+@Table(name = "Ciudadano")
 public class Ciudadano {
 
     @Id

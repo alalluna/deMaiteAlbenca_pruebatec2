@@ -16,6 +16,7 @@ public class TurnoController {
     private final GenericoJPA<Ciudadano, Long> ciudadanoJPA = new GenericoJPA<>(Ciudadano.class);
     private final GenericoJPA<Tramite, Long> tramiteJPA = new GenericoJPA<>(Tramite.class);
     //los metodos de turno incluyendo un filtro para las busquedas
+    //he implementado las validaciones para optimizar el codigo, incluyendo optional para los estados
 
     //para agregar un nuevo turno
     public void createTurno(Long ciudadanoId, Long tramiteId, Turno turno) {

@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
+@Table(name = "Tramite")
 public class Tramite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

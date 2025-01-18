@@ -3,6 +3,8 @@ package com.example.controllers;
 import com.example.entities.Tramite;
 import com.example.persistence.GenericoJPA;
 import com.example.utils.Validations;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class TramiteController {
     //He creado el crud completo tb
     public void createTramite(Tramite tramite) {
         Validations.notNull(tramite, "El tramite no puede ser nulo.");
-        Validations.StringNotEmpty(tramite.getNombre()),"El nombre no puede estar vacio";
+        Validations.StringNotEmpty(tramite.getNombre(),"El nombre no puede estar vacio");
         Validations.StringNotEmpty(tramite.getDescripcion(), "La descripcion del tramite no puede estar vacia.");
         tramiteJPA.create(tramite);
     }
