@@ -1,5 +1,5 @@
  <!-- formulario -->
-  <div class="col-md-6 d-flex justify-content-center">
+  <div class="col-md-3 d-flex justify-content-center">
     <div class="card p-3 w-100">
         <h2 class="text-center mb-4">Registrar</h2>
         <form action="tramites" method="POST">

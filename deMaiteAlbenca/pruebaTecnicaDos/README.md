@@ -15,3 +15,5 @@ también he hecho lo mismo con las vistas ciudadanos, tramites y turnos mas inde
 -Ahora voy a hacer lo mismo con los tramites, encuentro errores a la hora de generar la duracion estimada, 
 -he cambiado el tipo de dato en sql a TIME, y en mi entitie a Duration, en el servlet lo parseo para recibir el parametro
 pero ahora me hara falta un metodo que convierta este tipo de enumeracion al formato que deseo incluir en el formulario
+-He encontrado un metodo mejor, utilizando la libreria util.calendar creo que es mas directa y mejor.
+-Ahora

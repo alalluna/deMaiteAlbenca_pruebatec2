@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.time.Duration;
 import java.util.List;
 
@@ -32,12 +33,10 @@ public class TramiteServlet extends HttpServlet {
         //nombre, descripcion, duracionEstimada;
         String nombre = req.getParameter("nombre");
         String descripcion = req.getParameter("descripcion");
-        //Parseo el tipo de dato duration
-        Duration duracionEstimada = Duration.parse(req.getParameter("duracionEstimada"));
+        //Parseo el tipo de dato duration, con time no se parsea
+        String duracionEstimada = req.getParameter("duracionEstimada");
 
-        Tramite tramite = new Tramite(nombre,descripcion,duracionEstimada);
-
-        tramiteController.createTramite(tramite);
+        tramiteController.createTramite(nombre,descripcion,duracionEstimada);
 
         resp.sendRedirect(req.getContextPath()+ "/tramites");
     }

@@ -11,7 +11,7 @@
                 <%@ include file="partials/header.jsp" %>
 
                     <!-- Contenedor Bootstrap para centrar el contenido 72vh para que se vea header y footer-->
-                    <div class="container mt-3 mb-2" style="min-height: 70vh;">
+                    <div class="container mt-3 mb-2" style="min-height: 71vh;">
                      <!-- Contenedor row para dividir en dos el ancho y que se vea tabla y formulario-->
                         <div class="row">
                             <%@ include file="partials/formularioCiudadanos.jsp" %>

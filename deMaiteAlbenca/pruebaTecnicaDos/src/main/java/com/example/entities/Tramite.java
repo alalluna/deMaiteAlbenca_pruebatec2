@@ -2,11 +2,12 @@ package com.example.entities;
 
 import jakarta.persistence.*;
 
-import java.time.Duration;
+import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
 @Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
-@Table(name = "Tramite")
+//no salia porque lo asocie a unta tabla sql Tramite que no existe, ahora si sale
+@Table(name = "tramite")
 public class Tramite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +18,9 @@ public class Tramite {
     private String descripcion;
 
     //inlcuyo el tipo Duration que es util para contabilizar el tiempo, en la base de datos es de tipo TIME
+    //al final uso tipo de dato TIME para aprovechar la libreria utils.calendar
     @Column(nullable = false)
-    private Duration duracionEstimada;
+    private Time duracionEstimada;
 
     @OneToMany(mappedBy = "tramite", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Turno> turnos = new HashSet<>();
@@ -26,11 +28,19 @@ public class Tramite {
 
     public Tramite() {
     }
-    public Tramite(String nombre, String descripcion, Duration duracionEstimada) {
+
+    //me falta un constructor que tenga solo tres parametros para la tabla tramites
+    public Tramite(String nombre, String descripcion, Time duracionEstimada) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracionEstimada = duracionEstimada;
-        this.turnos = new HashSet<>();
+    }
+    public Tramite(Long id, String nombre, String descripcion, Time duracionEstimada, Set<Turno> turnos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracionEstimada = duracionEstimada;
+        this.turnos = turnos;
     }
 
     //getters and setters
@@ -59,11 +69,11 @@ public class Tramite {
         this.descripcion = descripcion;
     }
 
-    public Duration getDuracionEstimada() {
+    public Time getDuracionEstimada() {
         return duracionEstimada;
     }
 
-    public void setDuracionEstimada(Duration duracionEstimada) {
+    public void setDuracionEstimada(Time duracionEstimada) {
         this.duracionEstimada = duracionEstimada;
     }
 

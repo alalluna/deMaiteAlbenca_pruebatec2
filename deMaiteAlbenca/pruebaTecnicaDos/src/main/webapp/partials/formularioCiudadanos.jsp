@@ -1,5 +1,5 @@
-  <!-- formulario -->
-  <div class="col-md-6 d-flex justify-content-center">
+  <!-- formulario ocupara el 40% del ancho por la clase col-md-4 -->
+  <div class="col-md-4 d-flex justify-content-center">
     <div class="card p-3 w-100">
         <h2 class="text-center mb-4">Registrar</h2>
         <form action="ciudadanos" method="POST">
@@ -13,16 +13,16 @@
                     required>
             </div>
             <div class="form-group mb-3">
-                <label for="documentoIdentidad">Documento de Identidad (DNI/NIE)</label>
+                <label for="documentoIdentidad">(DNI/NIE)</label>
                 <input type="text" class="form-control" id="documentoIdentidad"
                     name="documentoIdentidad" required>
             </div>
             <div class="form-group mb-3">
-                <label for="numSS">Número de Seguridad Social</label>
+                <label for="numSS">Num Seguridad Social</label>
                 <input type="text" class="form-control" id="numSS" name="numSS" required>
             </div>
             <div class="form-group mb-3">
-                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <label for="fechaNacimiento">Fecha Nacimiento</label>
                 <input type="date" class="form-control" id="fechaNacimiento"
                     name="fechaNacimiento" required>
             </div>

@@ -11,7 +11,7 @@
                 <%@ include file="partials/header.jsp" %>
 
                     <!-- Contenedor para centrar el contenido -->
-                    <div class="container mt-3 mb-2" style="min-height: 70vh;">
+                    <div class="container mt-3 mb-2" style="min-height: 75vh;">
                      <!-- Contenedor row -->
                         <div class="row">
                             <%@ include file="partials/formularioTramites.jsp" %>
