@@ -23,17 +23,12 @@ public class TramiteController {
         tramiteJPA.create(tramite);
     }
 
-    public Tramite findOneTramite(Long id) {
-        Validations.notNull(id, "El ID del tramite no puede ser nulo.");
-        return tramiteJPA.findOne(id);
-    }
-
     public List<Tramite> findAllTramite() {
         return tramiteJPA.findAll();
     }
-    //necesitare un metodo que busqie por la descripcion
+    //necesitare un metodo que busque por la descripcion
 
-    //Este metodo no esta bien porque no lo recoge el fomrulario, en lugar de obtener la descripcion tengo que obtener el nombre
+    //Este metodo no esta bien porque no lo recoge el formulario, en lugar de obtener la descripcion tengo que obtener el nombre
     public Tramite findByDescripcion(String nombre) {
         Validations.StringNotEmpty(nombre, "La descripción del trámite no puede estar vacía.");
 
@@ -45,12 +40,16 @@ public class TramiteController {
                 .orElse(null); // Si no se encuentra el trámite, devuelve null
     }
 
-    public void updateTramite(Tramite tramite) {
-        tramiteJPA.update(tramite);
-    }
-
-    public void deleteTramite(Long id) {
-        Validations.notNull(id, "El ID del tramite no puede ser nulo.");
-        tramiteJPA.delete(id);
-    }
+//    public void updateTramite(Tramite tramite) {
+//        tramiteJPA.update(tramite);
+//    }
+//
+//    public void deleteTramite(Long id) {
+//        Validations.notNull(id, "El ID del tramite no puede ser nulo.");
+//        tramiteJPA.delete(id);
+//    }
+//    public Tramite findOneTramite(Long id) {
+//        Validations.notNull(id, "El ID del tramite no puede ser nulo.");
+//        return tramiteJPA.findOne(id);
+//    }
 }

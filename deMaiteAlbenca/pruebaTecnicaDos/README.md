@@ -30,7 +30,7 @@ pero se que no me hará falta todo. En TurnoController he incluido crear el turn
 - 
 - He limpiado y ordenado un poco el código y el readme.
 - Genero el formulario para filtrar turnos, modifico TurnoController y TurnosServlets para que se filtren correctamente.
--
-- Solo me faltará cubrir detalles como que las citas se vuelvan atendidas cuando pase su fecha y hora.
-- También necesitaré realizar excepciones propias y me planteo realizar un método genérico findByString que me sirva para encontrar por dni y porn nombre de trámite.
+- Corregí el método filterTurno para que las citas se vuelvan atendidas cuando pase su fecha y hora (del día actual).
+- 
+- También necesitaré realizar excepciones propias y me planteo realizar un método genérico findByString que me sirva para encontrar por dni y por nombre de trámite.
 - 

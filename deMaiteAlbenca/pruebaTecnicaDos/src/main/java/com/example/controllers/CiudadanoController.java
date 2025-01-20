@@ -3,9 +3,8 @@ package com.example.controllers;
 import com.example.entities.Ciudadano;
 import com.example.persistence.GenericoJPA;
 import com.example.utils.Validations;
-
 import java.util.List;
-import java.util.Optional;
+
 
 public class CiudadanoController{
     private final GenericoJPA<Ciudadano, Long> ciudadanoJPA = new GenericoJPA<>(Ciudadano.class);
@@ -21,10 +20,6 @@ public class CiudadanoController{
         ciudadanoJPA.create(ciudadano);
     }
 
-    public Ciudadano findOneCiudadano(Long id) {
-        Validations.notNull(id, "El ID del ciudadano no puede ser nulo.");
-        return ciudadanoJPA.findOne(id);
-    }
     public List<Ciudadano> findAllCiudadano() {
         return ciudadanoJPA.findAll();
     }
@@ -39,8 +34,9 @@ public class CiudadanoController{
                 .findFirst()
                 .orElse(null); // Si no se encuentra el ciudadano
     }
-
-
+    /* public Ciudadano findOneCiudadano(Long id) {
+        Validations.notNull(id, "El ID del ciudadano no puede ser nulo.");
+        return ciudadanoJPA.findOne(id);
     public void updateCiudadano(Ciudadano ciudadano) {
         Validations.notNull(ciudadano, "El ciudadano no puede ser nulo.");
         ciudadanoJPA.update(ciudadano);
@@ -49,5 +45,5 @@ public class CiudadanoController{
     public void deleteCiudadano(Long id) {
         Validations.notNull(id, "El ID del ciudadano no puede ser nulo.");
         ciudadanoJPA.delete(id);
-    }
+    }*/
 }

@@ -8,6 +8,7 @@ import com.example.utils.Validations;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +41,7 @@ public class TurnoController {
         return numeroTurno;
     }
 
-        // Verificar si una hora esta ocupada para una fecha especifica
+    // Verificar si una hora esta ocupada para una fecha especifica
     public boolean horaOcupada(LocalTime hora, LocalDate fecha) {
         List<Turno> turnos = findAllTurno(); // Obtener todos los turnos
         return turnos.stream()
@@ -95,37 +96,35 @@ public class TurnoController {
         turnoJPA.create(turno);
     }
 
-    // Encontrar un turno por ID
-    public Turno findOneTurno(Long id) {
-        Validations.notNull(id, "El ID del turno no puede ser nulo.");
-        return turnoJPA.findOne(id);
-    }
-
     // Obtener todos los turnos
     public List<Turno> findAllTurno() {
         return turnoJPA.findAll();
     }
 
-    // Actualizar un turno
-    public void updateTurno(Turno turno) {
-        Validations.notNull(turno, "El turno no puede ser nulo.");
-        turnoJPA.update(turno);
-    }
-
-    // Eliminar un turno
-    public void deleteTurno(Long id) {
-        Validations.notNull(id, "El ID del turno no puede ser nulo.");
-        turnoJPA.delete(id);
-    }
-
     // Filtrar turnos por rango de fechas y estado
     public List<Turno> filterTurno(LocalDate fechaInicio, LocalDate fechaFin, String estado) {
-        // Esto no puedo validarlo asi porque si no no puedo filtrar por unos campos si y otros no
-        //        Validations.notNull(fechaInicio, "La fecha de inicio no puede ser nula.");
-        //        Validations.notNull(fechaFin, "La fecha de fin no puede ser nula.");
-
+        //necesitare la fecha actual para cambiar el estado
+        LocalDateTime ahora = LocalDateTime.now();
+        LocalDate fechaActual = ahora.toLocalDate();
+        LocalTime horaActual = ahora.toLocalTime();
         List<Turno> todosLosTurnos = turnoJPA.findAll();
         Validations.notEmpty(todosLosTurnos, "No se encontraron turnos.");
+        // Cambiar estado dinámicamente
+        todosLosTurnos.forEach(turno -> {
+            // Primero cambiar el estado basado en la fecha
+            if (turno.getFecha().isBefore(fechaActual)) {
+                turno.setEstado("YA_ATENDIDO");
+            } else if (turno.getFecha().isAfter(fechaActual)) {
+                turno.setEstado("EN_ESPERA");
+            } else {
+                // Con los registros de hoy cambiar por hora
+                if (turno.getHora().toLocalTime().isBefore(horaActual)) {
+                    turno.setEstado("YA_ATENDIDO");
+                } else {
+                    turno.setEstado("EN_ESPERA");
+                }
+            }
+        });
 
         Optional<String> optionalEstado = Optional.ofNullable(estado)
                 .filter(e -> e.equalsIgnoreCase("EN_ESPERA") || e.equalsIgnoreCase("YA_ATENDIDO"));
@@ -137,4 +136,20 @@ public class TurnoController {
                 .filter(turno -> optionalEstado.map(e -> turno.getEstado().equalsIgnoreCase(e)).orElse(true))
                 .collect(Collectors.toList());
     }
+//    // Actualizar un turno
+//    public void updateTurno(Turno turno) {
+//        Validations.notNull(turno, "El turno no puede ser nulo.");
+//        turnoJPA.update(turno);
+//    }
+//
+//    // Eliminar un turno
+//    public void deleteTurno(Long id) {
+//        Validations.notNull(id, "El ID del turno no puede ser nulo.");
+//        turnoJPA.delete(id);
+//    }
+//    // Encontrar un turno por ID
+//    public Turno findOneTurno(Long id) {
+//        Validations.notNull(id, "El ID del turno no puede ser nulo.");
+//        return turnoJPA.findOne(id);
+//    }
 }
