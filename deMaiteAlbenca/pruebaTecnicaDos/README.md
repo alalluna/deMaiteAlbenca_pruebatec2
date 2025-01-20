@@ -34,3 +34,4 @@ pero se que no me hará falta todo. En TurnoController he incluido crear el turn
 - 
 - También necesitaré realizar excepciones propias y me planteo realizar un método genérico findByString que me sirva para encontrar por dni y por nombre de trámite.
 - 
+blablabla
