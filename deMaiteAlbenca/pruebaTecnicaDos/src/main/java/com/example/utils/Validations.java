@@ -3,7 +3,7 @@ package com.example.utils;
 import java.util.Collection;
 
 public class Validations {
-    //Para validar si un turno, un id...(algun objeto) es nulo
+    //Para validar nulo o vacios
     public static void notNull(Object obj, String message) {
         if (obj == null) {
             throw new IllegalArgumentException(message);

@@ -2,6 +2,7 @@ package com.example.entities;
 
 import jakarta.persistence.*;
 
+import java.sql.Time;
 import java.time.LocalDate;
 
 @Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
@@ -14,6 +15,9 @@ public class Turno {
     private int numeroTurno;
     @Column(nullable = false)
     private LocalDate fecha;
+    @Column(nullable = false)
+    //sin el parametro hora no se puede gestionar las citas
+    private Time hora;
     @Column(nullable = false)
     private String descripcion;
     @Column(nullable = false)
@@ -32,10 +36,11 @@ public class Turno {
     public Turno() {
     }
 
-    public Turno(Long id, int numeroTurno, LocalDate fecha, String descripcion, String estado, Ciudadano ciudadano, Tramite tramite) {
+    public Turno(Long id, int numeroTurno, LocalDate fecha, Time hora, String descripcion, String estado, Ciudadano ciudadano, Tramite tramite) {
         this.id = id;
         this.numeroTurno = numeroTurno;
         this.fecha = fecha;
+        this.hora = hora;
         this.descripcion = descripcion;
         this.estado = estado;
         this.ciudadano = ciudadano;
@@ -66,6 +71,14 @@ public class Turno {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public Time getHora() {
+        return hora;
+    }
+
+    public void setHora(Time hora) {
+        this.hora = hora;
     }
 
     public String getDescripcion() {
@@ -107,6 +120,7 @@ public class Turno {
                 "id=" + id +
                 ", numeroTurno=" + numeroTurno +
                 ", fecha=" + fecha +
+                ", hora=" + hora +
                 ", descripcion='" + descripcion + '\'' +
                 ", estado='" + estado + '\'' +
                 ", ciudadano=" + ciudadano +

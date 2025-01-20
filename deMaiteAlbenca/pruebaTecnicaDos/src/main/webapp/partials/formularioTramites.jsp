@@ -13,7 +13,7 @@
                     required>
             </div>
             <div class="form-group mb-3">
-                <label for="duracionEstimada">Duracion Estimada</label>
+                <label for="duracionEstimada">Duracion hh:mm:ss</label>
                 <input type="text" class="form-control" id="duracionEstimada"
                     name="duracionEstimada" required>
             </div>

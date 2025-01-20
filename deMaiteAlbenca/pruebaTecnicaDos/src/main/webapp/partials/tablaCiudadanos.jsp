@@ -1,6 +1,6 @@
- <!-- tabla que ocupara el 60% del ancho por colmd8 -->
+<!-- tabla que ocupara el 60% del ancho por colmd8 -->
 
- <div class="col-md-8 d-flex justify-content-center">
+<div class="col-md-8 d-flex justify-content-center">
     <div class="card p-4 w-100">
         <h2 class="text-center mb-4">Ciudadanos</h2>
         <table class="table table-bordered table-striped">

@@ -16,16 +16,10 @@
                         for (Tramite tramite : tramites) {
                 %>
                     <tr>
-                        <td>
-                            <%= tramite.getNombre() %>
-                        </td>
-                        <td>
-                            <%= tramite.getDescripcion() %>
-                        </td>
+                        <td><%= tramite.getNombre() %></td>
+                        <td><%= tramite.getDescripcion() %></td>
                          <!-- da error porque hay que convertir el formato para introducir el tiempo -->
-                        <td>
-                            <%= tramite.getDuracionEstimada() %>
-                        </td>
+                        <td><%= tramite.getDuracionEstimada() %></td>
                     </tr>
                 <%  }
                  // necesito comprobar que salgan datos o no

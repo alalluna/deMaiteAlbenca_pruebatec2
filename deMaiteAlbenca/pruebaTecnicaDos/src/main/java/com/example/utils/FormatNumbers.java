@@ -1,11 +1,7 @@
 package com.example.utils;
-
-import com.example.entities.Turno;
-import com.example.persistence.GenericoJPA;
-
 import java.sql.Time;
 import java.util.Calendar;
-import java.util.Random;
+
 
 public class FormatNumbers {
     //el metodo necesita un String y devuelve un tipo de dato Time
@@ -37,20 +33,6 @@ public class FormatNumbers {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("El tiempo contiene valores no numéricos.");
         }
-    }
-
-    public int generateNumber(GenericoJPA<Turno, Long> turnoJPA) {
-        //hago el numero random
-        Random random = new Random();
-        int numeroTurno;
-
-        do {
-            // Generar un número aleatorio de 4 dígitos (entre 1000 y 9999)
-            numeroTurno = random.nextInt(9999 - 1000) + 1000;
-            //que no coincida con ninguno existente
-        } while (turnoJPA.findAll().stream().anyMatch(t -> t.getNumeroTurno() == numeroTurno));
-
-        return numeroTurno;
     }
 }
 

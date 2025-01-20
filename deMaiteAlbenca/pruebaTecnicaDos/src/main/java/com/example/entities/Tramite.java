@@ -6,7 +6,7 @@ import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
 @Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
-//no salia porque lo asocie a unta tabla sql Tramite que no existe, ahora si sale
+//no salia porque no lo asocie a una tabla sql Tramite, ahora si sale
 @Table(name = "tramite")
 public class Tramite {
     @Id
@@ -17,8 +17,8 @@ public class Tramite {
     @Column(nullable = false)
     private String descripcion;
 
-    //inlcuyo el tipo Duration que es util para contabilizar el tiempo, en la base de datos es de tipo TIME
-    //al final uso tipo de dato TIME para aprovechar la libreria utils.calendar
+    //incluyo el tipo Duration que es util para contabilizar el tiempo, en la base de datos es de tipo TIME
+    //al final uso tipo de dato TIME y  utils.calendar en el metodo auxiliar
     @Column(nullable = false)
     private Time duracionEstimada;
 

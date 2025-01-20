@@ -5,6 +5,7 @@ import com.example.persistence.GenericoJPA;
 import com.example.utils.Validations;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CiudadanoController{
     private final GenericoJPA<Ciudadano, Long> ciudadanoJPA = new GenericoJPA<>(Ciudadano.class);
@@ -24,10 +25,21 @@ public class CiudadanoController{
         Validations.notNull(id, "El ID del ciudadano no puede ser nulo.");
         return ciudadanoJPA.findOne(id);
     }
-
     public List<Ciudadano> findAllCiudadano() {
         return ciudadanoJPA.findAll();
     }
+    //para realizar correctamente el fomrulario de citas o turnos
+    public Ciudadano FindOneByDni( String documentoIdentidad){
+        Validations.StringNotEmpty(documentoIdentidad, "El documento de identidad no puede estar vacío.");
+
+        List<Ciudadano> ciudadanos = ciudadanoJPA.findAll();
+
+        return ciudadanos.stream()
+                .filter(ciudadano -> ciudadano.getDocumentoIdentidad().equals(documentoIdentidad))
+                .findFirst()
+                .orElse(null); // Si no se encuentra el ciudadano
+    }
+
 
     public void updateCiudadano(Ciudadano ciudadano) {
         Validations.notNull(ciudadano, "El ciudadano no puede ser nulo.");

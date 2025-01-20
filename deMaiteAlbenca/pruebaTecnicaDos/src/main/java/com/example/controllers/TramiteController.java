@@ -31,6 +31,19 @@ public class TramiteController {
     public List<Tramite> findAllTramite() {
         return tramiteJPA.findAll();
     }
+    //necesitare un metodo que busqie por la descripcion
+
+    //Este metodo no esta bien porque no lo recoge el fomrulario, en lugar de obtener la descripcion tengo que obtener el nombre
+    public Tramite findByDescripcion(String nombre) {
+        Validations.StringNotEmpty(nombre, "La descripción del trámite no puede estar vacía.");
+
+        List<Tramite> tramites = tramiteJPA.findAll();
+
+        return tramites.stream()
+                .filter(tramite -> tramite.getNombre().equalsIgnoreCase(nombre))
+                .findFirst()
+                .orElse(null); // Si no se encuentra el trámite, devuelve null
+    }
 
     public void updateTramite(Tramite tramite) {
         tramiteJPA.update(tramite);

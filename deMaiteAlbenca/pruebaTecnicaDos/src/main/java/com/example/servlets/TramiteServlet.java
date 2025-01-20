@@ -9,8 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Time;
-import java.time.Duration;
 import java.util.List;
 
 
@@ -29,11 +27,9 @@ public class TramiteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Recibir parametros
-        //nombre, descripcion, duracionEstimada;
+        //Recibir parametros nombre, descripcion, duracionEstimada;
         String nombre = req.getParameter("nombre");
         String descripcion = req.getParameter("descripcion");
-        //Parseo el tipo de dato duration, con time no se parsea
         String duracionEstimada = req.getParameter("duracionEstimada");
 
         tramiteController.createTramite(nombre,descripcion,duracionEstimada);

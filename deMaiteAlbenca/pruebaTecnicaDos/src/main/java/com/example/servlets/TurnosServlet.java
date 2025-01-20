@@ -1,5 +1,7 @@
 package com.example.servlets;
 
+import com.example.controllers.CiudadanoController;
+import com.example.controllers.TramiteController;
 import com.example.controllers.TurnoController;
 import com.example.entities.Ciudadano;
 import com.example.entities.Tramite;
@@ -11,44 +13,51 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @WebServlet("/turnos")
 public class TurnosServlet extends HttpServlet {
     private TurnoController turnoController = new TurnoController();
+    private CiudadanoController ciudadanoController = new CiudadanoController();
+    private TramiteController tramiteController = new TramiteController();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Obtener todos los turnos
         List<Turno> turnos = turnoController.findAllTurno();
+        // Obtener los ciudadanos y trámites para el formulario
+        List<Ciudadano> ciudadanos = ciudadanoController.findAllCiudadano();
+        List<Tramite> tramites = tramiteController.findAllTramite();
+        //para que pueda distinguir las horas libres de las ocupadas necesitaremos listarlas
+        LocalDate fechaActual = LocalDate.now();
+        List<LocalTime> horasDisponibles = turnoController.horasLibres(fechaActual);
 
-        // Pasar los turnos al JSP
-        request.setAttribute("turnos", turnos);
+        // Pasar los atributos
+        req.setAttribute("turnos", turnos);
+        req.setAttribute("ciudadanos", ciudadanos);
+        req.setAttribute("tramites", tramites);
+        req.setAttribute("horasDisponibles", horasDisponibles);
 
-        // Mostrar la página con los turnos
-        request.getRequestDispatcher("/turnos.jsp").forward(request, response);
+        // Mostrar la página turnos
+        req.getRequestDispatcher("/turnos.jsp").forward(req, resp);
     }
 
     // Crear un nuevo turno
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Obtener los parámetros del formulario
-        Long ciudadanoId = Long.parseLong(request.getParameter("ciudadanoId"));
-        Long tramiteId = Long.parseLong(request.getParameter("tramiteId"));
-        int numeroTurno = Integer.parseInt(request.getParameter("numeroTurno"));
-        String descripcion = request.getParameter("descripcion");
-        String estado = request.getParameter("estado");
-
-        // Crear un nuevo turno con los datos del formulario
-        Turno turno = new Turno();
-        // setear número de turno dinámico
-        turno.setNumeroTurno(1234);
+        String documentoIdentidad = req.getParameter("documentoIdentidad"); // DNI o NIE
+        String fecha = req.getParameter("fecha");
+        String hora = req.getParameter("hora");
+        String descripcion = req.getParameter("descripcion");
 
         // Llamar al controlador para crear el turno
-        turnoController.createTurno(ciudadanoId, tramiteId, turno);
+        turnoController.createTurno(documentoIdentidad, fecha, hora, descripcion);
 
-        // Redirigir al listado de turnos
-        response.sendRedirect("turnos");
+        // Redirigir al listado turnos
+        resp.sendRedirect("turnos");
     }
 
 
