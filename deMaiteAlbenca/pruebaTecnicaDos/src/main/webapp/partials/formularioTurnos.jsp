@@ -1,4 +1,4 @@
-<div class="col-md-2 d-flex justify-content-center">
+<div class="col-md-4 d-flex justify-content-center">
     <div class="card p-3 w-100">
         <h3 class="text-center mb-1">Citar</h3>
         <form action="turnos" method="POST">
@@ -17,14 +17,15 @@
             <!--Hora -->
             <div class="form-group">
                 <label for="hora">Hora</label>
-                 <select class="form-control" id="hora" name="hora" required>
-                        <%
-                            List<LocalTime> horasDisponibles = (List<LocalTime>)request.getAttribute("horasDisponibles");
+                <select class="form-control" id="hora" name="hora" required>
+                    <% List<LocalTime> horasDisponibles = (List<LocalTime>)request.getAttribute("horasDisponibles");
                             for (LocalTime hora : horasDisponibles) {
-                        %>
-                            <option value="<%= hora.toString() %>"><%= hora.toString() %></option>
-                        <% } %>
-                    </select>
+                            %>
+                            <option value="<%= hora.toString() %>">
+                                <%= hora.toString() %>
+                            </option>
+                            <% } %>
+                </select>
             </div>
 
             <!--Descripcion (nombre del tramite) -->
@@ -32,12 +33,13 @@
                 <label for="descripcion">Tramite</label>
                 <select class="form-control" id="descripcion" name="descripcion" required>
                     <!-- Aquí las opciones de los trámites disponibles -->
-                    <%
-                        List<Tramite> tramites = (List<Tramite>)request.getAttribute("tramites");
-                        for (Tramite tramite : tramites) {
-                    %>
-                        <option value="<%= tramite.getNombre() %>"><%= tramite.getNombre() %></option>
-                    <% } %>
+                    <% List<Tramite> tramites = (List<Tramite>)request.getAttribute("tramites");
+                            for (Tramite tramite : tramites) {
+                            %>
+                            <option value="<%= tramite.getNombre() %>">
+                                <%= tramite.getNombre() %>
+                            </option>
+                            <% } %>
                 </select>
             </div>
 

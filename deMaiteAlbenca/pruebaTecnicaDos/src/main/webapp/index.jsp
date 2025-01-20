@@ -8,7 +8,7 @@
     <%@ include file="partials/header.jsp" %>
 
     <!-- Contenedor Bootstrap para centrar el contenido -->
-    <div class="container mt-5" style="min-height: 71vh;">
+    <div class="container mt-5" style="min-height: 72vh;">
         <h1>BIENVENIDO AL SERVICIO DE CITAS DE LA SEGURIDAD SOCIAL</h1>
     </div>
 

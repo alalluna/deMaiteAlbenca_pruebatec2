@@ -120,8 +120,9 @@ public class TurnoController {
 
     // Filtrar turnos por rango de fechas y estado
     public List<Turno> filterTurno(LocalDate fechaInicio, LocalDate fechaFin, String estado) {
-        Validations.notNull(fechaInicio, "La fecha de inicio no puede ser nula.");
-        Validations.notNull(fechaFin, "La fecha de fin no puede ser nula.");
+        // Esto no puedo validarlo asi porque si no no puedo filtrar por unos campos si y otros no
+        //        Validations.notNull(fechaInicio, "La fecha de inicio no puede ser nula.");
+        //        Validations.notNull(fechaFin, "La fecha de fin no puede ser nula.");
 
         List<Turno> todosLosTurnos = turnoJPA.findAll();
         Validations.notEmpty(todosLosTurnos, "No se encontraron turnos.");
@@ -130,8 +131,9 @@ public class TurnoController {
                 .filter(e -> e.equalsIgnoreCase("EN_ESPERA") || e.equalsIgnoreCase("YA_ATENDIDO"));
 
         return todosLosTurnos.stream()
-                .filter(turno -> !turno.getFecha().isBefore(fechaInicio))
-                .filter(turno -> !turno.getFecha().isAfter(fechaFin))
+                //modifico los filter para que tenga dos opciones si es null o si no
+                .filter(turno -> (fechaInicio == null || !turno.getFecha().isBefore(fechaInicio)))
+                .filter(turno -> (fechaFin == null || !turno.getFecha().isAfter(fechaFin)))
                 .filter(turno -> optionalEstado.map(e -> turno.getEstado().equalsIgnoreCase(e)).orElse(true))
                 .collect(Collectors.toList());
     }

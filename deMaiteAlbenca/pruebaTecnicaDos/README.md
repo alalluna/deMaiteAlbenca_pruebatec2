@@ -2,7 +2,7 @@ Desarrollo del proyecto de Citas con la Seguridad Social
 
 - He creado la estructura inicial, editando pom con las dependecias necesarias, 
 añadiendo el archivo persistence e incluyendo la configuración de la fábrica y el crud genérico.
-- También he incluido un footer, un head y en header para las vistas.
+- También he incluido un footer, un head y en header para las vistas. Tengo reciclada una maquetación bootstrap.
 - 
 - He creado tres entidades. Ciudadano y Tramite tienen relación one to many con la tercera relación (Turno).
 que tiene many to one para corresponderse correctamente con las anteriores.
@@ -11,7 +11,7 @@ que tiene many to one para corresponderse correctamente con las anteriores.
 pero se que no me hará falta todo. En TurnoController he incluido crear el turno, listar y filtrar para poder tener el programa.
 - 
 - He creado los archivos CiudadanoServlet, TramiteServlet y TurnoServlet, aunque aún no he realizado el doget, dopost,
-también he hecho lo mismo con las vistas ciudadanos.jsp, tramites.jsp y turnos.jsp mas index.
+- También he hecho lo mismo con las vistas ciudadanos.jsp, tramites.jsp y turnos.jsp mas index.
 - Tengo tres validaciones para objetos nulos, strings y colecciones nulas, asi no tengo que repetir código en los métodos.
 - Ahora he incluido los get y post de CiudadanoServlet para las solicitudes http del formulario y la tabla de ciudadanos.
 - 
@@ -27,3 +27,10 @@ también he hecho lo mismo con las vistas ciudadanos.jsp, tramites.jsp y turnos.
 - Para ello necesito métodos auxiliares para generar un código numérico (ya está) y para las horas libre y ocupadas y un filtro que está basado en otro que ya hicimos
 - las horas las he gestionado tb en una lista para que se pueda ir cogiendo de hora en hora, supongo que desde las 8 a las 15 h.
 - Cometí errores en el método generateNumber que hace el código y findByDescripcion que recoge el nombre del trámite, pero ya se pueden visualizar y crear turnos.
+- 
+- He limpiado y ordenado un poco el código y el readme.
+- Genero el formulario para filtrar turnos, modifico TurnoController y TurnosServlets para que se filtren correctamente.
+-
+- Solo me faltará cubrir detalles como que las citas se vuelvan atendidas cuando pase su fecha y hora.
+- También necesitaré realizar excepciones propias y me planteo realizar un método genérico findByString que me sirva para encontrar por dni y porn nombre de trámite.
+- 

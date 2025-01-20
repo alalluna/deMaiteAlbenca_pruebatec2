@@ -6,6 +6,7 @@
       <li class="nav-item"><a class="nav-link text-light" href="/pruebaTecnicaDos/ciudadanos">Ciudadanos</a></li>
       <li class="nav-item"><a class="nav-link text-light" href="/pruebaTecnicaDos/tramites">Tramites</a></li>
       <li class="nav-item"><a class="nav-link text-light" href="/pruebaTecnicaDos/turnos">Turnos</a></li>
+      <li class="nav-item"><a class="nav-link text-light" href="/pruebaTecnicaDos/busquedas">Busquedas</a></li>
     </ul>
   </nav>
 </header>

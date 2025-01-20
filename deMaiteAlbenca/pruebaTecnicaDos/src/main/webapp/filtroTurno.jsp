@@ -14,7 +14,7 @@
                     <div class="container mt-1 mb-1" style="min-height: 78vh;">
                      <!-- Contenedor row -->
                         <div class="row">
-                            <%@ include file="partials/formularioTurnos.jsp" %>
+                            <%@ include file="partials/filtro.jsp" %>
                             <%@ include file="partials/tablaTurnos.jsp" %>
                         </div>
                     </div>

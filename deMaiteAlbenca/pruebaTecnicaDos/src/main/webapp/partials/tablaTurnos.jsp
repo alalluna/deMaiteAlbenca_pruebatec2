@@ -1,4 +1,4 @@
-<div class="col-md-6 d-flex justify-content-center">
+<div class="col-md-8 d-flex justify-content-center">
     <div class="card p-4 w-100">
         <h2 class="text-center mb-4">Turnos</h2>
         <table class="table table-bordered table-striped">
