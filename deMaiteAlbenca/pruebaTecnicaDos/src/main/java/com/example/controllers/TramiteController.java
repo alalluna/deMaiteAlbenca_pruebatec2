@@ -4,21 +4,33 @@ import com.example.entities.Tramite;
 import com.example.persistence.GenericoJPA;
 import com.example.utils.FormatNumbers;
 import com.example.utils.Validations;
-
 import java.sql.Time;
 import java.util.List;
 
 public class TramiteController {
     private final GenericoJPA<Tramite, Long> tramiteJPA = new GenericoJPA<>(Tramite.class);
-    //He creado el crud entero, aunque no se si me dará tiempo para usar todos los metodos
-    public void createTramite(String nombre, String descripcion, String duracionEstimadaStr) {
 
-        Validations.StringNotEmpty(nombre,"El nombre no puede estar vacio");
-        Validations.StringNotEmpty(descripcion, "La descripcion del tramite no puede estar vacia.");
+    public void createTramite(String nombre, String descripcion, String duracionEstimadaStr) {
+        Validations.StringNotEmpty(nombre,"El nombre no puede estar vacío");
+        Validations.StringNotEmpty(descripcion, "La descripción del tramite no puede estar vacía.");
         Validations.StringNotEmpty(duracionEstimadaStr, "La duración estimada no puede estar vacía.");
-        //convertir la duracion con el metodo
+
+        // que tengan valores unicos con metodo generico de utils y quitar los espacios a los lados
+        List<Tramite> tramites = tramiteJPA.findAll();
+        Validations.uniqueValue(
+                tramites,
+                tramite -> tramite.getNombre().equalsIgnoreCase(nombre.trim()),
+                "Ya existe un trámite con este nombre."
+        );
+        Validations.uniqueValue(
+                tramites,
+                tramite -> tramite.getDescripcion().equalsIgnoreCase(descripcion.trim()),
+                "Ya existe un trámite con esta descripción."
+        );
+
+        //llamar al metodo para convertir la duracion con Calendar al formato de horas minutos y segundos
         Time duracionEstimada = FormatNumbers.formatTime(duracionEstimadaStr);
-        //nueva instancia y crear
+
         Tramite tramite = new Tramite(nombre, descripcion, duracionEstimada);
         tramiteJPA.create(tramite);
     }
@@ -26,9 +38,8 @@ public class TramiteController {
     public List<Tramite> findAllTramite() {
         return tramiteJPA.findAll();
     }
-    //necesitare un metodo que busque por la descripcion
 
-    //Este metodo no esta bien porque no lo recoge el formulario, en lugar de obtener la descripcion tengo que obtener el nombre
+    //Error cometido: en tramite es el parametro nombre y en Turno es la descripcion
     public Tramite findByDescripcion(String nombre) {
         Validations.StringNotEmpty(nombre, "La descripción del trámite no puede estar vacía.");
 
@@ -39,17 +50,4 @@ public class TramiteController {
                 .findFirst()
                 .orElse(null); // Si no se encuentra el trámite, devuelve null
     }
-
-//    public void updateTramite(Tramite tramite) {
-//        tramiteJPA.update(tramite);
-//    }
-//
-//    public void deleteTramite(Long id) {
-//        Validations.notNull(id, "El ID del tramite no puede ser nulo.");
-//        tramiteJPA.delete(id);
-//    }
-//    public Tramite findOneTramite(Long id) {
-//        Validations.notNull(id, "El ID del tramite no puede ser nulo.");
-//        return tramiteJPA.findOne(id);
-//    }
 }

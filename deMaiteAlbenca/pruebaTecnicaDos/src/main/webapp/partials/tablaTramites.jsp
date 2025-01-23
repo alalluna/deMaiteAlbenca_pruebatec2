@@ -1,4 +1,3 @@
- <div class="col-md-9 d-flex justify-content-center">
     <div class="card p-4 w-100">
         <h2 class="text-center mb-4">Tramites</h2>
         <table class="table table-bordered table-striped">
@@ -6,7 +5,7 @@
                 <tr>
                  <th>Nombre</th>
                  <th>Descripcion</th>
-                 <th>Duracion Estimada (hh:mm:ss)</th>
+                 <th>Duracion (hh:mm:ss)</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,4 +28,3 @@
             </tbody>
         </table>
     </div>
-</div>

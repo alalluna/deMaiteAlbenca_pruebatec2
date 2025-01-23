@@ -24,39 +24,31 @@ public class TurnosServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Obtener todos los turnos
         List<Turno> turnos = turnoController.findAllTurno();
-        // Obtener los ciudadanos y trámites para el formulario
         List<Ciudadano> ciudadanos = ciudadanoController.findAllCiudadano();
         List<Tramite> tramites = tramiteController.findAllTramite();
+
         //para que pueda distinguir las horas libres de las ocupadas necesitaremos listarlas
         LocalDate fechaActual = LocalDate.now();
         List<LocalTime> horasDisponibles = turnoController.horasLibres(fechaActual);
 
-        // Pasar los atributos
         req.setAttribute("turnos", turnos);
         req.setAttribute("ciudadanos", ciudadanos);
         req.setAttribute("tramites", tramites);
         req.setAttribute("horasDisponibles", horasDisponibles);
-
         // Mostrar la página turnos
         req.getRequestDispatcher("/turnos.jsp").forward(req, resp);
     }
 
-    // Crear un nuevo turno
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Obtener los parámetros del formulario
         String documentoIdentidad = req.getParameter("documentoIdentidad"); // DNI o NIE
         String fecha = req.getParameter("fecha");
         String hora = req.getParameter("hora");
         String descripcion = req.getParameter("descripcion");
 
-        // Llamar al controlador para crear el turno
         turnoController.createTurno(documentoIdentidad, fecha, hora, descripcion);
-
-        // Redirigir al listado turnos
-        resp.sendRedirect("turnos");
+        resp.sendRedirect(req.getContextPath()+ "/turnos");
     }
 
 

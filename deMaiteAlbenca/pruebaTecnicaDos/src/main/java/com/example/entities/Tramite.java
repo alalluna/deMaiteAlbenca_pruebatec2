@@ -1,35 +1,34 @@
 package com.example.entities;
 
 import jakarta.persistence.*;
-
 import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
-@Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
-//no salia porque no lo asocie a una tabla sql Tramite, ahora si sale
-@Table(name = "tramite")
+
+@Entity
+@Table(name = "tramite", //no salia porque no lo asocie a una tabla sql Tramite.
+uniqueConstraints = @UniqueConstraint(columnNames = "nombre"))
+
 public class Tramite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    //lo pongo unico para evitar el error de duplicidad aunque no ha sido suficiente, tendré que validar
+    @Column(nullable = false, unique = true)
     private String nombre;
     @Column(nullable = false)
     private String descripcion;
-
-    //incluyo el tipo Duration que es util para contabilizar el tiempo, en la base de datos es de tipo TIME
-    //al final uso tipo de dato TIME y  utils.calendar en el metodo auxiliar
+    //al final uso tipo de dato TIME compatible con utils.calendar en el metodo auxiliar
     @Column(nullable = false)
     private Time duracionEstimada;
 
     @OneToMany(mappedBy = "tramite", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Turno> turnos = new HashSet<>();
-    //contructor
 
+    //Me faltaba un constructor que tenga solo tres parametros para la solicitud post del formulario
     public Tramite() {
     }
 
-    //me falta un constructor que tenga solo tres parametros para la tabla tramites
     public Tramite(String nombre, String descripcion, Time duracionEstimada) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -42,8 +41,6 @@ public class Tramite {
         this.duracionEstimada = duracionEstimada;
         this.turnos = turnos;
     }
-
-    //getters and setters
 
     public Long getId() {
         return id;
@@ -84,8 +81,6 @@ public class Tramite {
     public void setTurnos(Set<Turno> turnos) {
         this.turnos = turnos;
     }
-
-    //tostring
 
     @Override
     public String toString() {

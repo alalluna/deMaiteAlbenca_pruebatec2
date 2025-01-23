@@ -1,11 +1,10 @@
 package com.example.entities;
 
 import jakarta.persistence.*;
-
 import java.sql.Time;
 import java.time.LocalDate;
 
-@Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
+@Entity
 @Table(name = "Turno")
 public class Turno {
     @Id
@@ -16,8 +15,7 @@ public class Turno {
     @Column(nullable = false)
     private LocalDate fecha;
     @Column(nullable = false)
-    //sin el parametro hora no se puede gestionar las citas
-    private Time hora;
+    private Time hora; //sin el parametro hora no se puede gestionar las citas
     @Column(nullable = false)
     private String descripcion;
     @Column(nullable = false)
@@ -32,7 +30,6 @@ public class Turno {
     private Tramite tramite;
 
     //constructor
-
     public Turno() {
     }
 
@@ -48,7 +45,6 @@ public class Turno {
     }
 
     //getters y setters
-
     public Long getId() {
         return id;
     }
@@ -112,8 +108,8 @@ public class Turno {
     public void setTramite(Tramite tramite) {
         this.tramite = tramite;
     }
-//tostring
 
+    //tostring
     @Override
     public String toString() {
         return "Turno{" +

@@ -6,6 +6,7 @@
                     <th>Codigo</th>
                     <th>Fecha</th>
                     <th>Hora</th>
+                    <th>Estado</th>
                     <th>Ciudadano</th>
                     <th>Tramite</th>
                 </tr>
@@ -21,6 +22,7 @@
                     <td><%= turno.getNumeroTurno() %></td>
                     <td><%= turno.getFecha() %></td>
                     <td><%= turno.getHora() %></td>
+                    <td><%= turno.getEstado() %></td>
                     <td><%= turno.getCiudadano().getNombre() + " " + turno.getCiudadano().getApellidos() %></td>
                     <td><%= turno.getTramite().getNombre() %></td>
                 </tr>

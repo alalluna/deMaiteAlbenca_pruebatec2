@@ -1,5 +1,4 @@
 <!-- formulario ocupara el 40% del ancho por la clase col-md-4 -->
-<div class="col-md-4 d-flex justify-content-center">
     <div class="card p-3 w-100">
         <h2 class="text-center mb-4">Registrar</h2>
         <form action="ciudadanos" method="POST">
@@ -26,5 +25,4 @@
             <button type="submit" class="btn btn-outline-secondary w-100">Insertar</button>
         </form>
     </div>
-</div>
 <!-- final formulario -->

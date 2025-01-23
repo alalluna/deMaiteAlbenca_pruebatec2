@@ -1,15 +1,15 @@
 package com.example.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity  // Aquí es donde se marca como una entidad de JPA y se me olvido
-@Table(name = "Ciudadano")
-public class Ciudadano {
+@Table(name = "Ciudadano",
+uniqueConstraints = @UniqueConstraint(columnNames = {"documentoIdentidad", "numSS"}))
 
+public class Ciudadano {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,16 +17,15 @@ public class Ciudadano {
     private String nombre;
     @Column(nullable = false)
     private String apellidos;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String documentoIdentidad; // DNI o equivalente, único
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String numSS; // Número de Seguridad Social
     @Column(nullable = false)
     private LocalDate fechaNacimiento;
 
     @OneToMany(mappedBy = "ciudadano", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Turno> turnos;
-    //contructor
 
     public Ciudadano() {
     }
@@ -40,7 +39,6 @@ public class Ciudadano {
         this.turnos = new HashSet<>();
     }
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -96,8 +94,6 @@ public class Ciudadano {
     public void setTurnos(Set<Turno> turnos) {
         this.turnos = turnos;
     }
-
-    //tostring
 
     @Override
     public String toString() {

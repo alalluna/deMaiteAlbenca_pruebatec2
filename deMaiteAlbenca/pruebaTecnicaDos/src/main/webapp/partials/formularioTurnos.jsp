@@ -1,21 +1,20 @@
-<div class="col-md-4 d-flex justify-content-center">
     <div class="card p-3 w-100">
-        <h3 class="text-center mb-1">Citar</h3>
+        <h2 class="text-center mb-4">Citar</h2>
         <form action="turnos" method="POST">
             <!--Documento de Identidad -->
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="documentoIdentidad">DNI/NIE</label>
                 <input type="text" class="form-control" id="documentoIdentidad" name="documentoIdentidad" required>
             </div>
 
             <!--Fecha -->
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="fecha">Fecha</label>
                 <input type="date" class="form-control" id="fecha" name="fecha" required>
             </div>
 
             <!--Hora -->
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="hora">Hora</label>
                 <select class="form-control" id="hora" name="hora" required>
                     <% List<LocalTime> horasDisponibles = (List<LocalTime>)request.getAttribute("horasDisponibles");
@@ -29,7 +28,7 @@
             </div>
 
             <!--Descripcion (nombre del tramite) -->
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="descripcion">Tramite</label>
                 <select class="form-control" id="descripcion" name="descripcion" required>
                     <!-- Aquí las opciones de los trámites disponibles -->
@@ -48,4 +47,3 @@
         </form>
 
     </div>
-</div>

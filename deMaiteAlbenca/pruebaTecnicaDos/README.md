@@ -1,37 +1,127 @@
-Desarrollo del proyecto de Citas con la Seguridad Social
+# Proyecto: Sistema de Gestión de Citas con la Seguridad Social
 
-- He creado la estructura inicial, editando pom con las dependecias necesarias, 
-añadiendo el archivo persistence e incluyendo la configuración de la fábrica y el crud genérico.
-- También he incluido un footer, un head y en header para las vistas. Tengo reciclada una maquetación bootstrap.
-- 
-- He creado tres entidades. Ciudadano y Tramite tienen relación one to many con la tercera relación (Turno).
-que tiene many to one para corresponderse correctamente con las anteriores.
-- 
-- Ahora he hecho CiudadanoController, TramiteController y TurnoController. En las dos primeras he realizado todo el crud, 
-pero se que no me hará falta todo. En TurnoController he incluido crear el turno, listar y filtrar para poder tener el programa.
-- 
-- He creado los archivos CiudadanoServlet, TramiteServlet y TurnoServlet, aunque aún no he realizado el doget, dopost,
-- También he hecho lo mismo con las vistas ciudadanos.jsp, tramites.jsp y turnos.jsp mas index.
-- Tengo tres validaciones para objetos nulos, strings y colecciones nulas, asi no tengo que repetir código en los métodos.
-- Ahora he incluido los get y post de CiudadanoServlet para las solicitudes http del formulario y la tabla de ciudadanos.
-- 
-- También he creado la vista de ciudadanos.jsp y después lo he separado en dos partials para que el código esté más limpio.
-- Ahora voy a hacer lo mismo con los trámites, encuentro errores a la hora de generar la duración estimada. 
-- He cambiado el tipo de dato en sql a TIME y en mi entidad a Duration, en el servlet lo parseo para recibir el parámetro.
-- Me hará falta un método que convierta este tipo de enumeración al formato que deseo incluir en el formulario (Duration)
-- He encontrado un método mejor, utilizando la librería util.calendar creo que es más directa y mejor. 
-- Los parámetros para utilizar en el método util.calendar serán de tipo TIME. Con esto manejaré las horas minutos y segundos.
-- 
-- Ahora tengo un método para crear números aleatorios que los agregará si no existen en la base de datos de turno
-- Crearé la lista de turnos y el formulario para dar nueva cita y para filtrar los turnos.
-- Para ello necesito métodos auxiliares para generar un código numérico (ya está) y para las horas libre y ocupadas y un filtro que está basado en otro que ya hicimos
-- las horas las he gestionado tb en una lista para que se pueda ir cogiendo de hora en hora, supongo que desde las 8 a las 15 h.
-- Cometí errores en el método generateNumber que hace el código y findByDescripcion que recoge el nombre del trámite, pero ya se pueden visualizar y crear turnos.
-- 
-- He limpiado y ordenado un poco el código y el readme.
-- Genero el formulario para filtrar turnos, modifico TurnoController y TurnosServlets para que se filtren correctamente.
-- Corregí el método filterTurno para que las citas se vuelvan atendidas cuando pase su fecha y hora (del día actual).
-- 
-- También necesitaré realizar excepciones propias y me planteo realizar un método genérico findByString que me sirva para encontrar por dni y por nombre de trámite.
-- 
-blablabla
+Este proyecto implementa un sistema para la gestión de citas en la Seguridad Social. 
+Utiliza tecnologías como **Java**, **JSP**, **Servlets** y **Bootstrap** para la interfaz. 
+
+---
+
+## 🛠️ Desarrollo del Proyecto
+
+### 1. Configuración Inicial
+- Creación de la estructura de carpetas del proyecto.
+- Configuración del archivo `pom.xml` con las dependencias necesarias.
+- Inclusión del archivo `persistence.xml` en META-INF.
+- Configuración de la fábrica de entidades(ConfigJPA) y CRUD genérico(GenericoJPA).
+
+### 2. Diseño de la Interfaz
+- Inclusión de componentes reutilizados y reutilizables:
+  - **Header**
+  - **Footer**
+  - **Head**
+  - **Index**
+  - **Estructura fundamental para las páginas**
+  - **Estructura fundamental para los formularios**
+- Uso de una maquetación basada en **Bootstrap** y **FontAwesome** para lograr un diseño responsivo y limpio.
+- Uso de imágenes que tengo en mi pc de mi marca personal.
+
+### 3. Modelado de Datos
+- Creación de las entidades principales:
+  - **Ciudadano**
+  - **Trámite**
+  - **Turno**
+- Relaciones entre las entidades:
+  - **Ciudadano** y **Trámite** tienen una relación **One-to-Many** con **Turno**.
+  - **Turno** tiene una relación **Many-to-One** con **Ciudadano** y **Trámite**.
+
+---
+
+## 🚀 Funcionalidades Implementadas
+
+### 1. Controladores
+- **CiudadanoController**, **TramiteController** y **TurnoController**:
+  - Gestión del CRUD para las entidades:
+  - Métodos para crear, listar y encontrar por datos en Ciudadano y Tramite.
+  - Método para  crear turnos con sus metodos auxiliares:
+      - generar numero aleatorio
+      - filtrar horas ocupadas
+      - listar horas libres
+  - Métodos para listar y filtrar turnos, dentro de los cuales hay otro metodos auxiliares.
+
+
+### 2. Servlets y Vistas
+- **CiudadanoServlet**:
+  - Implementación de métodos `GET` y `POST` para manejar exclusivamente solicitudes HTTP.
+- **Vistas JSP**:
+  - Diseño inicial en `ciudadanos.jsp`.
+  - Separación en partials para mayor limpieza y reutilización del código.
+  - Imitación del resto de vistas a partir de ciudadanos.
+
+- A partir de estos archivos, creación de nuevos servlets 
+**TurnosServlet**, **TramitesServlet** ,**FiltroServlet**
+
+### 3. Gestión numérica **FormatNumbers**
+- Gestión de las fechas:
+  - Aprendizaje de utils Duration (aunque luego no lo use)
+  - Cambio del tipo de dato para el uso de utils Calendar:
+    - **SQL**: `DATE` y`TIME`.
+    - **Entidad**: `LOCALDATE` y`TIME`.
+  - Fechas de nacimiento válidas(nadie vive mas de 110 años)
+- Métodos auxiliares para:
+  - Parseo de parámetros.(Validación y parseo tb)
+  - Conversión entre formatos.
+  - Generación de horarios disponibles, considerando:
+    - Horario laboral: 8:00 - 15:00.
+    - Duración de trámites: 1 hora.
+
+### 4. Corrección de errores en la ejecución del código
+- Validaciones generales para evitar duplicación de código:
+    - Objetos nulos.
+    - Strings vacíos.
+    - Colecciones nulas.
+  - Crear turnos no repetidos.
+  - Gestionar horarios libres y ocupados.
+  - Filtrar turnos por fecha de inicio, fin y/o estado.
+
+---
+
+## ⚙️ Optimización y Manejo de Errores WebFilter
+
+- Implementación de un **WebFilter** para manejar excepciones globales:
+  - Redirección a una página de error personalizada.
+  - Uso de `request.setAttribute("errorMessage", ex.getMessage())` para mostrar mensajes detallados.
+  - Navegación de regreso con `.getHeader("Referer")`.
+
+---
+
+## 🔧 Corrección de Errores
+
+### Errores Identificados y Solucionados
+1. Fechas de nacimiento incorrectas (nadie vive mas de 110 años).
+2. Trámites con nombres y/o descripción duplicados.
+3. Turnos realizados en horas y fechas pasadas.
+
+### Soluciones que se implementaron
+- Validaciones:
+  - Propiedad `unique=true` en columnas relevantes (como "nombre" en **Trámite**).
+  - Métodos auxiliares para:
+    - Validar fechas de nacimiento.
+    - Evitar duplicados en listas.
+- Lógica de creación de turnos:
+  - Solo permite citas futuras.
+  - Actualización automática del estado de los turnos al pasar su fecha/hora.
+
+---
+
+## 🧹 Limpieza y Revisión Final
+
+- Reorganización y limpieza del código.
+- Refactorización de métodos para mejorar legibilidad:
+  - Delegación de funciones a clases auxiliares, como `FormatNumbers`.
+  - Delegación de la lógica al controlador para que el servlet solo se ocupe de las solicitudes http. 
+- Pruebas exhaustivas de todas las funcionalidades y manejo de excepciones.
+
+---
+
+## 📌 Ideas para Implementar
+- Generar mas metodos genericos como FindByParameter para la busqueda por dni y nombre.
+- Mejorar el diseño y usabilidad de la interfaz.

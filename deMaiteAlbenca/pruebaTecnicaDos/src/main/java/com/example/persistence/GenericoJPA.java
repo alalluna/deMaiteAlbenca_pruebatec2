@@ -2,7 +2,6 @@ package com.example.persistence;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-
 import java.util.List;
 
 public class GenericoJPA <T, ID> {

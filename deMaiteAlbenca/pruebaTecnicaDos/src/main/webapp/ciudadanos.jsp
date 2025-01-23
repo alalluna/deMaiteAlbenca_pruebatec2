@@ -5,18 +5,21 @@
 
         <html lang="en">
         <%@ include file="partials/head.jsp" %>
-
-            <body>
+            <body class="d-flex flex-column vh-100">
 
                 <%@ include file="partials/header.jsp" %>
 
-                    <!-- Contenedor Bootstrap para centrar el contenido 72vh para que se vea header y footer-->
-                    <div class="container mt-3 mb-2" style="min-height: 71vh;">
+                    <!-- Contenedor Bootstrap para centrar el contenido-->
+                     <div class="container-fluid flex-grow-1 overflow-auto py-3 px-2">
                      <!-- Contenedor row para dividir en dos el ancho y que se vea tabla y formulario-->
                         <div class="row">
-                            <%@ include file="partials/formularioCiudadanos.jsp" %>
-
-                            <%@ include file="partials/tablaCiudadanos.jsp" %>
+                            <div class="col-md-3 overflow-auto" style="max-height: 600px;">
+                                <%@ include file="partials/formularioCiudadanos.jsp" %>
+                            </div>
+                            <div class="col-md-9 overflow-auto" style="max-height: 600px;">
+                                <%@ include file="partials/tablaCiudadanos.jsp" %>
+                            </div>
+                            
                         </div>
                     </div>
 

@@ -24,30 +24,26 @@ public class FiltroServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Obtener los parámetros de búsqueda desde la solicitud GET
         String estado = req.getParameter("estado");
         String fechaInicioStr = req.getParameter("fechaInicio");
         String fechaFinStr = req.getParameter("fechaFin");
-        // Convertir las fechas de los parámetros a LocalDate (si están presentes)
-        LocalDate fechaInicio = (fechaInicioStr != null && !fechaInicioStr.isEmpty()) ? LocalDate.parse(fechaInicioStr) : null;
-        LocalDate fechaFin = (fechaFinStr != null && !fechaFinStr.isEmpty()) ? LocalDate.parse(fechaFinStr) : null;
 
-        // Obtener los turnos del filtro
-        List<Turno> turnos = turnoController.filterTurno(fechaInicio, fechaFin, estado);
-        // Obtener los ciudadanos y trámites para el formulario
+        //es mejor pasar los parametros directamente para dejar la logica al controlador
+        List<Turno> turnos = turnoController.filterTurno(fechaInicioStr, fechaFinStr, estado);
+
         List<Ciudadano> ciudadanos = ciudadanoController.findAllCiudadano();
         List<Tramite> tramites = tramiteController.findAllTramite();
-        //para que pueda distinguir las horas
+
         LocalDate fechaActual = LocalDate.now();
         List<LocalTime> horasDisponibles = turnoController.horasLibres(fechaActual);
 
-        // Pasar los atributos
+
         req.setAttribute("turnos", turnos);
         req.setAttribute("ciudadanos", ciudadanos);
         req.setAttribute("tramites", tramites);
         req.setAttribute("horasDisponibles", horasDisponibles);
 
-        // Mostrar la página turnos
+
         req.getRequestDispatcher("/filtroTurno.jsp").forward(req, resp);
     }
 }

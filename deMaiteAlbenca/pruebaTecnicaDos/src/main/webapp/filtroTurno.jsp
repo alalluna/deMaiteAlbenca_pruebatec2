@@ -6,16 +6,21 @@
         <html lang="en">
         <%@ include file="partials/head.jsp" %>
 
-            <body>
+            <body class="d-flex flex-column vh-100">
 
                 <%@ include file="partials/header.jsp" %>
 
                     <!-- Contenedor para centrar el contenido -->
-                    <div class="container mt-1 mb-1" style="min-height: 78vh;">
+                    <div class="container-fluid flex-grow-1 overflow-auto py-3 px2">
                      <!-- Contenedor row -->
                         <div class="row">
-                            <%@ include file="partials/filtro.jsp" %>
-                            <%@ include file="partials/tablaTurnos.jsp" %>
+                            <div class="col-md-3 overflow-auto" style="max-height: 600px;">
+                                <%@ include file="partials/filtro.jsp" %>
+                            </div>
+                            <div class="col-md-9 overflow-auto" style="max-height: 600px;">
+                                <%@ include file="partials/tablaFiltros.jsp" %>
+                            </div>
+                            
                         </div>
                     </div>
 
